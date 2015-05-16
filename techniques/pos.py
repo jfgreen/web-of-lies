@@ -14,15 +14,15 @@ def compare(word1, word2):
 # Threshold percentage
 
 def pos_filter(text):
-    POS = "NNS"
+    POS = "NN"
     output = []
     input_list = text.split(" ")
     for i in range(0, len(input_list)):
         word = input_list[i]
         #print word
+        word_POS = nltk.pos_tag(word_tokenize(text))[i]
+        #print word_POS
         try:
-            word_POS = nltk.pos_tag(word_tokenize(text))[i]
-            #print word_POS
             if word_POS[1] == POS:
                 synset = wn.synsets(word)[0]
                 synonyms = synset.lemma_names()
