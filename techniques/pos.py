@@ -48,7 +48,7 @@ def get_word_meets_threshold(word, synsets, threshold):
 # Threshold percentage
 
 def pos_filter(text):
-    POS = "NN"
+    POS = "VB"
     threshold = 0.5
     output = []
     input_list = text.split(" ")
