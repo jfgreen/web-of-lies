@@ -8,12 +8,13 @@ def compare(word1, word2):
     ss1 = wn.synsets(word1)
     ss2 = wn.synsets(word2)
     return max(s1.path_similarity(s2) for (s1, s2) in product(ss1, ss2))
-compare('hi', 'hello')
+#compare('hi', 'hello')
 
 # TODO
 # Threshold percentage
 
-def pos_filter(text, POS = "NN"):
+def pos_filter(text):
+    POS = "NN"
     output = []
     input_list = text.split(" ")
     for i in range(0, len(input_list)):
