@@ -61,26 +61,16 @@ def pos_filter(text):
             if word_POS[1] == POS:
                 #new_word = get_word_meets_threshold(word, wn.synsets(word), threshold)
                 #output.append(str(new_word))
-                
                 synset = wn.synsets(word)[0]
                 synonyms = synset.lemma_names()
                 synonyms = [synonym.replace('_', ' ') for synonym in synonyms]
-                #print("HI")
                 #print ', '.join(synonyms)
-                #print synonyms[-1]
+                print synonyms[-1]
                 output.append(str(synonyms[-1]))
             else:
                 output.append(word)
-    
-    #if word_POS[1] == "NN":
-            #syn = wn.synsets(word)[0]
-            #print ', '.join(syn.lemma_names())
-    #try:
-            #x = int(word)
-            #x += randint(-x / 2, x / 2)
-            #output.append(str(x))
         except:
             output.append(word)
-    print text
-    print output
+    #print text
+    #print output
     return " ".join(output)
