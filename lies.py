@@ -9,7 +9,7 @@ from techniques.numbers import adjust_numbers
 from techniques.pos import pos_filter
 
 lying_ways = [
-    adjust_numbers
+    adjust_numbers,
     pos_filter
 ]
 
