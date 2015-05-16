@@ -43,24 +43,23 @@ def get_word_meets_threshold(word, synsets, threshold):
 
 
 
-
-# TODO
-# Threshold percentage
-
 def pos_filter(text):
-    POS = "VB"
+    POS = "NN"
     threshold = 0.5
     output = []
     input_list = text.split(" ")
     for i in range(0, len(input_list)):
         word = input_list[i]
-        #print word
-        word_POS = nltk.pos_tag(word_tokenize(text))[i]
-        #print word_POS
+        tokenized_text = word_tokenize(text)
         try:
-            if word_POS[1] == POS:
+            word_POS = nltk.pos_tag(tokenized_text[i:i+1])
+        except:
+            pass
+        try:
+            if word_POS[0][1] == POS:
                 #new_word = get_word_meets_threshold(word, wn.synsets(word), threshold)
                 #output.append(str(new_word))
+                #print new_word
                 synset = wn.synsets(word)[0]
                 synonyms = synset.lemma_names()
                 synonyms = [synonym.replace('_', ' ') for synonym in synonyms]
@@ -71,6 +70,8 @@ def pos_filter(text):
                 output.append(word)
         except:
             output.append(word)
-    #print text
-    #print output
+    print
+    print
+    print text
+    print output
     return " ".join(output)
