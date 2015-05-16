@@ -21,11 +21,11 @@ def get_article_cached(article):
             return article_file.read()
     else:
         try:
-            article_data = wikipedia.page(article).content
+            article_data = wikipedia.page(article).summary.encode("ascii", "ignore")
         except:
             raise Exception("Couldn't retrieve content for article.")
         with open(article_path, "w") as article_file:
-            article_file.write(article_data.encode("UTF-8"))
+            article_file.write(article_data)
         return article_data
 
 
