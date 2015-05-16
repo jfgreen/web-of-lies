@@ -6,9 +6,11 @@ import tornado.web
 CACHING_DIR = "cached"
 
 from techniques.numbers import adjust_numbers
+from techniques.pos import pos_filter
 
 lying_ways = [
     adjust_numbers
+    pos_filter
 ]
 
 def get_article_cached(article):

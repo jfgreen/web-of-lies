@@ -2,3 +2,4 @@
 cached
 env
 *.pyc
+.Rproj.user
