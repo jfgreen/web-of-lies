@@ -14,7 +14,7 @@ def compare(word1, word2):
 # Threshold percentage
 
 def pos_filter(text):
-    POS = "NN"
+    POS = "NNS"
     output = []
     input_list = text.split(" ")
     for i in range(0, len(input_list)):
