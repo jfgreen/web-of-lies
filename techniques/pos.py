@@ -65,7 +65,7 @@ def pos_filter(text):
                 synset = wn.synsets(word)[0]
                 synonyms = synset.lemma_names()
                 synonyms = [synonym.replace('_', ' ') for synonym in synonyms]
-                
+                #print("HI")
                 #print ', '.join(synonyms)
                 #print synonyms[-1]
                 output.append(str(synonyms[-1]))
