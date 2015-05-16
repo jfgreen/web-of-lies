@@ -1,6 +1,14 @@
 import nltk
 from nltk import pos_tag, word_tokenize
 from nltk.corpus import wordnet as wn
+import itertools as IT
+from itertools import product
+
+def compare(word1, word2):
+    ss1 = wn.synsets(word1)
+    ss2 = wn.synsets(word2)
+    return max(s1.path_similarity(s2) for (s1, s2) in product(ss1, ss2))
+compare('hi', 'hello')
 
 # TODO
 # Threshold percentage
