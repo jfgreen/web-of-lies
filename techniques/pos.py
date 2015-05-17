@@ -39,7 +39,6 @@ def pos_filter(text, threshold_percentage, NN):
                 synonyms = synset.lemma_names() # Get names for each set
                 synonyms = [synonym.replace('_', ' ') for synonym in synonyms] 
                 alt_word = synonyms[-1]
-                #print alt_word
                 if (alt_word != word[:-1]) and compare(alt_word, word) > 0.2: # Check that the selected synonym is not just removing an "s"
                     output.append(str(alt_word).lower())
                 else:

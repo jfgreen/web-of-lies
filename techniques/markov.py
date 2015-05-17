@@ -35,7 +35,6 @@ skip_max = 5
 max_per_iter = 3
 
 def markov_replace(text, juice):
-    print juice
     while juice > 0:
         if juice > max_per_iter:
             text = multi_markov_replace(text, max_per_iter)
