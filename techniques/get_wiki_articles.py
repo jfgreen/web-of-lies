@@ -18,7 +18,13 @@ page_titles = ["Autobiography_of_Weni", "Sebek-khu_Stele", "Merneptah_Stele", "B
 "Table", "Marijuana", "Cocaine", "Mushroom", "Ferris_wheel", "Shark", "Dive", "Hotel", "Nonbuilding_structure", "Las_Vegas_Strip",
 "Peter_Mundy", "Plovdiv", "Candy", "Confection", "Convection", "Sugar_substitutes", "Dessert", "Desert", 
 "Kruger_National_Park", "Zimbabwe", "Peace_park", "Elephant", "Proboscis", "Incisor", "Keystone_species", "Testosterone", 
-"Estrogen", "Endangered_species", "Poaching", "South_Asia", "West_Africa", "Taxonomy_(biology)", "Pliocene"]
+"Estrogen", "Endangered_species", "Poaching", "South_Asia", "West_Africa", "Taxonomy_(biology)", "Pliocene", "Pineapple", 
+"Friend", "Enemy", "Terrorist", "Attack", "Health", "Nutrition", "Fool", "Fleet", "Ship", "Navy", "Seal", "Titanium", 
+"Einsteinium", "Antimony", "Arsenic", "Aluminum", "Selenium", "Hydrogyn", "Oxygen", "Nitrogen", "Nickel", "Neodemium",
+"Neptunium", "Germanium", "Iron", "Uranium", "Europeum", "Vanadium", "Radium", "Gold", "Galium", "Iodine", "Thorium", "Thalium",
+"Strontium", "Silica", "Bronze", "Olympic", "Paralympic", "Athlete", "Symbol", "Symbolism", "Heavy", "Light", "Dark", "Night", 
+"Day", "Afternoon", "Morning", "Banana", "Oatmeal", "Life", "Artifical Intelligence", "Fungi", "Protist", "Gene", "DNA",
+"RNA", "Guanine", "Adenine", "Thymine", "Uridine", "Deoxyribose", "Anti-parallel", "Parallel"]
 
 filename = "training_data_from_wiki.txt"
 open(filename, 'w')
