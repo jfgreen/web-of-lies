@@ -2,6 +2,7 @@ import nltk
 from nltk import pos_tag, word_tokenize
 from nltk.corpus import wordnet as wn
 import random 
+import numpy # speeds up nltk
 
 def compare(word1, word2):
     ss1 = wn.synsets(word1)
