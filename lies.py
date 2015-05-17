@@ -6,11 +6,11 @@ import tornado.web
 CACHING_DIR = "cached"
 
 from techniques.numbers import adjust_numbers
+from techniques.markov import markov_replace
 from techniques.pos import pos_filter
 
 lying_ways = [
-    adjust_numbers,
-    pos_filter
+    markov_replace
 ]
 
 def get_article_cached(article):
@@ -29,21 +29,33 @@ def get_article_cached(article):
         return article_data
 
 
-def falsify(article):
+default_deception = 3
+def falsify(article, deception_levels):
     output = article
     for technique in lying_ways:
-        output = technique(output)
+        if len(deception_levels) > 0:
+            deception_level = deception_levels.pop()
+        else:
+            deception_level = default_deception
+        output = technique(output, deception_level)
+    if not output.endswith("."):
+        output += "."
     return output
 
 
 class LyingHandler(tornado.web.RequestHandler):
     def get(self, article):
-        print "Fetching article for %s" % article
-        self.write(falsify(get_article_cached(article)))
+        deception_levels = [default_deception for x in range(len(lying_ways))]
+        try:
+             deception_levels = [int(i) for i in self.get_query_arguments("data", strip=True)[0].split(",")]
+        except:
+            pass
+        print "Fetching article for %s with evils %s" % (article, deception_levels)
+        self.write(falsify(get_article_cached(article), deception_levels))
 
 
 application = tornado.web.Application([
-    (r"/(.*)", LyingHandler),
+    (r"/wiki/(.*)", LyingHandler),
 ])
 
 if __name__ == "__main__":
