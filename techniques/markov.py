@@ -5,7 +5,7 @@ corpus_data = [
     "corpus/time_machine",
     "corpus/pride",
     "corpus/people",
-    "corpus/art",
+    "corpus/training_data_from_wiki",
 ]
 
 mc = MarkovChain("./markov")
@@ -27,6 +27,7 @@ hints = [
     "from",
     "the",
     "with",
+    "common",
 ]
 
 skip_min = 2
@@ -35,7 +36,6 @@ skip_max = 5
 max_per_iter = 3
 
 def markov_replace(text, juice):
-    print juice
     while juice > 0:
         if juice > max_per_iter:
             text = multi_markov_replace(text, max_per_iter)
@@ -89,7 +89,7 @@ def get_good_markov(seed):
     i = 0
     while i < max_attempts:
         attempt = mc.generateStringWithSeed(seed)
-        l = len(attempt)
+        l = len(attempt.split())
         if l <= ideal_max and l >= ideal_min:
             if True not in [b in attempt for b in bad_bits]:
                 return attempt

@@ -7,10 +7,12 @@ CACHING_DIR = "cached"
 
 from techniques.numbers import adjust_numbers
 from techniques.markov import markov_replace
-from techniques.pos import pos_filter
+from techniques.pos import noun_filter, not_noun_filter
 
 lying_ways = [
-    markov_replace
+    markov_replace,
+    noun_filter,
+    not_noun_filter
 ]
 
 def get_article_cached(article):

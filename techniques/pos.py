@@ -1,14 +1,9 @@
 import nltk
 from nltk import pos_tag, word_tokenize
 from nltk.corpus import wordnet as wn
-import itertools as IT
-from itertools import product
+import random 
+import numpy # speeds up nltk
 
-def compare(word1, word2):
-    ss1 = wn.synsets(word1)
-    ss2 = wn.synsets(word2)
-    return max(s1.path_similarity(s2) for (s1, s2) in product(ss1, ss2))
-    
 def compare(word1, word2):
     ss1 = wn.synsets(word1)
     ss2 = wn.synsets(word2)
@@ -25,28 +20,11 @@ def compare(word1, word2):
                 cumulative_similarity = cumulative_similarity + s1.path_similarity(s2)
     similarity = cumulative_similarity/num_syns
     return similarity
-
-
-threshold = 0.2
-word = 'crazy'
-synsets = wn.synsets(word)
-curr_threshold = 1.0
-def get_word_meets_threshold(word, synsets, threshold):
-    for synset in synsets:
-        synonyms = synset.lemma_names()
-        synonyms = [synonym.replace('_', ' ') for synonym in synonyms]
-        for curr_alt_word in synonyms:
-            if compare(word, curr_alt_word) < threshold:
-                return(curr_alt_word)
-    return(word)
-
-
-
-
-def pos_filter(text):
-    POS = "NN"
-    threshold = 0.5
+    
+def pos_filter(text, threshold_percentage, NN):
+    threshold_percentage = threshold_percentage/100.0
     output = []
+    POS = "NN"
     input_list = text.split(" ")
     for i in range(0, len(input_list)):
         word = input_list[i]
@@ -56,22 +34,28 @@ def pos_filter(text):
         except:
             pass
         try:
-            if word_POS[0][1] == POS:
-                #new_word = get_word_meets_threshold(word, wn.synsets(word), threshold)
-                #output.append(str(new_word))
-                #print new_word
-                synset = wn.synsets(word)[0]
-                synonyms = synset.lemma_names()
-                synonyms = [synonym.replace('_', ' ') for synonym in synonyms]
-                #print ', '.join(synonyms)
-                print synonyms[-1]
-                output.append(str(synonyms[-1]))
+            # Check pos, threshold
+            if (((NN == True) and (POS in word_POS[0][1])) or ((NN == False) and (POS not in word_POS[0][1]))) and ((threshold_percentage > 0) and (random.random() < threshold_percentage)): 
+                synset = wn.synsets(word)[0] # Get synonym sets
+                synonyms = synset.lemma_names() # Get names for each set
+                synonyms = [synonym.replace('_', ' ') for synonym in synonyms] 
+                alt_word = synonyms[-1]
+                if (alt_word != word[:-1]) and compare(alt_word, word) > 0.2: # Check that the selected synonym is not just removing an "s"
+                    output.append(str(alt_word).lower())
+                else:
+                    output.append(word)
             else:
                 output.append(word)
         except:
             output.append(word)
-    print
-    print
-    print text
-    print output
+#     print
+#     print
+#     print text
+#     print output
     return " ".join(output)
+
+def noun_filter(text, threshold):
+    return pos_filter(text, threshold, True)
+
+def not_noun_filter(text, threshold):
+    return pos_filter(text, threshold, False)
