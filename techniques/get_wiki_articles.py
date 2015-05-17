@@ -26,7 +26,7 @@ page_titles = ["Autobiography_of_Weni", "Sebek-khu_Stele", "Merneptah_Stele", "B
 "Day", "Afternoon", "Morning", "Banana", "Oatmeal", "Life", "Artifical Intelligence", "Fungi", "Protist", "Gene", "DNA",
 "RNA", "Guanine", "Adenine", "Thymine", "Uridine", "Deoxyribose", "Anti-parallel", "Parallel"]
 
-filename = "training_data_from_wiki.txt"
+filename = "training_data_from_wiki"
 open(filename, 'w')
 count = 0
 for page_title in page_titles:
