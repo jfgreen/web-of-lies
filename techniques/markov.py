@@ -88,7 +88,6 @@ max_attempts = 16
 def get_good_markov(seed):
     i = 0
     while i < max_attempts:
-        print i
         attempt = mc.generateStringWithSeed(seed)
         l = len(attempt)
         if l <= ideal_max and l >= ideal_min:
