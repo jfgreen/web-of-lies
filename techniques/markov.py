@@ -83,7 +83,7 @@ def multi_markov_replace(text, max_replaces):
 
 ideal_min = 3
 ideal_max = 10
-bad_bits = ["(", ")", "_"]
+bad_bits = ["(", ")", "_", "="]
 max_attempts = 16
 def get_good_markov(seed):
     i = 0
