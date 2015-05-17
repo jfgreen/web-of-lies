@@ -1,2 +1,4 @@
 tornado==4.1
 wikipedia==1.4.0
+PyMarkovChain==1.7.5
+nltk==3.0.2
